@@ -252,7 +252,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[0].date,
+      title: (() => {
+        const isHoliday = dateData[0].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[0].date}</div> : <div>{dateData[0].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[0].date],
       key: dateData[0].date,
       align: "center",
@@ -268,7 +277,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[1].date,
+      title: (() => {
+        const isHoliday = dateData[1].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[1].date}</div> : <div>{dateData[1].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[1].date],
       key: dateData[1].date,
       align: "center",
@@ -284,7 +302,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[2].date,
+      title: (() => {
+        const isHoliday = dateData[2].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[2].date}</div> : <div>{dateData[2].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[2].date],
       key: dateData[2].date,
       align: "center",
@@ -300,7 +327,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[3].date,
+      title: (() => {
+        const isHoliday = dateData[3].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[3].date}</div> : <div>{dateData[3].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[3].date],
       key: dateData[3].date,
       align: "center",
@@ -316,7 +352,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[4].date,
+      title: (() => {
+        const isHoliday = dateData[4].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[4].date}</div> : <div>{dateData[4].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[4].date],
       key: dateData[4].date,
       align: "center",
@@ -332,7 +377,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[5].date,
+      title: (() => {
+        const isHoliday = dateData[5].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[5].date}</div> : <div>{dateData[5].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[5].date],
       key: dateData[5].date,
       align: "center",
@@ -348,7 +402,16 @@ const TimeSheetTable = () => {
       })
     },
     {
-      title: dateData[6].date,
+      title: (() => {
+        const isHoliday = dateData[6].isHoliday
+        return (
+          <>
+            {
+              isHoliday ? <div style={{ color: "red" }}>{dateData[6].date}</div> : <div>{dateData[6].date}</div>
+            }
+          </>
+        )
+      }),
       dataIndex: ["date", dateData[6].date],
       key: dateData[6].date,
       align: "center",
