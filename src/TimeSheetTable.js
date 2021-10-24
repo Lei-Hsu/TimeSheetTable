@@ -93,7 +93,8 @@ const mockDataSource = [
     {
       "Tue 2021/10/04": 5.5,
       "Wed 2021/10/05": 1,
-      "Mon 2021/10/03": 3
+      "Mon 2021/10/03": 3,
+      "Fri 2021/10/07": 1,
     },
   },
   {
@@ -105,16 +106,15 @@ const mockDataSource = [
     {
       "Fri 2021/10/07": 1,
       "Wed 2021/10/05": 5,
-      "Tue 2021/10/04": 1
+      "Tue 2021/10/04": 2
     },
   },
 ];
 
 const TableSummary = ({ pageData }) => {
-
   const setDateHours = (weekDate) => {
     const hasData = pageData?.filter((item) => { if (item.date) { return item?.date[weekDate] } })
-    if (hasData.length > 1) {
+    if (hasData.length > 0) {
       return hasData?.map(item => (item.date[weekDate]))?.reduce((a, b) => a + b)
     }
     return 0
@@ -148,13 +148,13 @@ const TableSummary = ({ pageData }) => {
           <div>{MondayData}</div>
         </Table.Summary.Cell>
         <Table.Summary.Cell>
-          <div>{ThursdayData}</div>
+          <div>{TuesdayData}</div>
         </Table.Summary.Cell>
         <Table.Summary.Cell>
           <div>{WednesdayData}</div>
         </Table.Summary.Cell>
         <Table.Summary.Cell>
-          <div>{TuesdayData}</div>
+          <div>{ThursdayData}</div>
         </Table.Summary.Cell>
         <Table.Summary.Cell>
           <div>{FridayData}</div>
@@ -421,7 +421,7 @@ const TimeSheetTable = () => {
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => setDataSource((pre) => [...pre, pre.dateData[6].date = e.target.value])}
+          // onChange={(e) => setDataSource((pre) => [...pre, pre.dateData[6].date = e.target.value])}
           />
         )
       })
