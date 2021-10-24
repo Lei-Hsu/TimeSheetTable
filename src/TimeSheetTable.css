@@ -1,0 +1,28 @@
+.columnTitle {
+  color: red;
+}
+.table_header {
+  /* background-color: red; */
+  height: 100px;
+  margin-bottom: 15px;
+}
+.table_header p {
+  padding-left: 10px;
+}
+.table_time {
+  text-align: left;
+  font-weight: bold;
+  width: 100%;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+}
+.table_picker {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ant-table-summary > tr > td {
+  border-bottom: none;
+  text-align: center;
+}
