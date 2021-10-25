@@ -185,26 +185,26 @@ const TableSummary = ({ pageData }) => {
 const TimeSheetTable = () => {
 
   const [dataSource, setDataSource] = useState(mockDataSource)
-console.log(dataSource)
+  console.log(dataSource)
   const columns = [
     {
       title: 'Project Labels',
       dataIndex: 'projectLabel',
       key: 'projectLabel',
       width: "150px",
-      render: ((record , row) => {
+      render: ((record, rowData) => {
         return (
           <Select
             style={{ width: 120 }}
             defaultValue={record}
-            onChange={(e) => setDataSource((pre) => ([...pre, row.projectLabel = e ]))}
-            // onChange={(value) => {
-            //   const newValue = {
-            //     ...row,
-            //     projectLabel:value
-            //   }
-            //   setDataSource((preState) => [...preState, newValue])
-            // }}
+            onChange={(value) => {
+              const updateItem = { ...rowData, projectLabel: value }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
 
           >
             {
@@ -216,7 +216,7 @@ console.log(dataSource)
                 )
               })
             }
-          </Select>
+          </Select >
         )
       })
     },
@@ -225,11 +225,19 @@ console.log(dataSource)
       dataIndex: 'workDetail',
       key: 'workDetail',
       width: "150px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Select
             style={{ width: 120 }}
             defaultValue={record}
+            onChange={(value) => {
+              const updateItem = { ...rowData, workDetail: value }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           >
             {
               workDetail.map((item) => {
@@ -249,13 +257,20 @@ console.log(dataSource)
       dataIndex: 'remark',
       key: 'remark',
       width: "150px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: 120 }}
             defaultValue={record}
+            onChange={(e) => {
+              const updateItem = { ...rowData, remark: e.target.value }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           >
-
           </Input>
         )
       })
@@ -275,12 +290,19 @@ console.log(dataSource)
       key: dateData[0].date,
       align: "center",
       width: "50px",
-      render: ((record,rowData) => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => setDataSource((pre) =>[...pre, rowData.date[dateData[0].date] = Number(e.target.value)] )}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[0].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -300,12 +322,19 @@ console.log(dataSource)
       key: dateData[1].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[1].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -325,12 +354,19 @@ console.log(dataSource)
       key: dateData[2].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[2].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -350,12 +386,19 @@ console.log(dataSource)
       key: dateData[3].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[3].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -375,12 +418,19 @@ console.log(dataSource)
       key: dateData[4].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[4].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -400,12 +450,19 @@ console.log(dataSource)
       key: dateData[5].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[5].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
@@ -425,11 +482,19 @@ console.log(dataSource)
       key: dateData[6].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record, rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
+            onChange={(e) => {
+              const updateItem = { ...rowData, date: { ...rowData.date, [dateData[6].date]: Number(e.target.value) } }
+              setDataSource(
+                dataSource.map((item) => {
+                  return item === rowData ? updateItem : item
+                })
+              )
+            }}
           />
         )
       })
