@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import 'antd/dist/antd.css';
 import { Table, Select, DatePicker, Button, Input } from 'antd'
 import "./TimeSheetTable.css"
+import { ExclamationCircleTwoTone, CheckCircleTwoTone } from '@ant-design/icons';
+
 
 const { Option } = Select
 
@@ -175,7 +177,9 @@ const TableSummary = ({ pageData }) => {
         {/* 佔空間 */}
         <Table.Summary.Cell style={{ textAlign: "right" }}>Total</Table.Summary.Cell>
         <Table.Summary.Cell >
-          <div>{ }</div>
+          {
+            SunDayData > 8 ? <div style={{ color: "red" }}><ExclamationCircleTwoTone style={{ color: "red" }} />{SunDayData}</div> : <div><CheckCircleTwoTone />{SunDayData}</div>
+          }
         </Table.Summary.Cell>
       </Table.Summary.Row>
     </>
