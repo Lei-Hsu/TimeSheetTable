@@ -185,18 +185,27 @@ const TableSummary = ({ pageData }) => {
 const TimeSheetTable = () => {
 
   const [dataSource, setDataSource] = useState(mockDataSource)
-
+console.log(dataSource)
   const columns = [
     {
       title: 'Project Labels',
       dataIndex: 'projectLabel',
       key: 'projectLabel',
       width: "150px",
-      render: (record => {
+      render: ((record , row) => {
         return (
           <Select
             style={{ width: 120 }}
             defaultValue={record}
+            onChange={(e) => setDataSource((pre) => ([...pre, row.projectLabel = e ]))}
+            // onChange={(value) => {
+            //   const newValue = {
+            //     ...row,
+            //     projectLabel:value
+            //   }
+            //   setDataSource((preState) => [...preState, newValue])
+            // }}
+
           >
             {
               projectLabel.map((item) => {
@@ -266,12 +275,12 @@ const TimeSheetTable = () => {
       key: dateData[0].date,
       align: "center",
       width: "50px",
-      render: (record => {
+      render: ((record,rowData) => {
         return (
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            onChange={(e) => Number(Math.round(e.target.value))}
+            onChange={(e) => setDataSource((pre) =>[...pre, rowData.date[dateData[0].date] = Number(e.target.value)] )}
           />
         )
       })
@@ -421,7 +430,6 @@ const TimeSheetTable = () => {
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-          // onChange={(e) => setDataSource((pre) => [...pre, pre.dateData[6].date = e.target.value])}
           />
         )
       })
