@@ -313,7 +313,7 @@ const TableSummary = ({ pageData }) => {
 const TimeSheetTable = () => {
   const [dataSource, setDataSource] = useState(mockDataSource);
   const [selectDataKey, setSelectDataKey] = useState([]);
-  // console.log(selectData , "Select");
+  console.log(selectDataKey ,"selectDataKey")
   const columns = [
     {
       title: "Project Labels",
@@ -419,6 +419,7 @@ const TimeSheetTable = () => {
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
+            disabled
             onChange={(e) => {
               const updateItem = {
                 ...rowData,
@@ -694,7 +695,9 @@ const TimeSheetTable = () => {
   ];
 
   const addNewItem = () => {
-    const keyNum = dataSource.length + 1;
+    // 因為如果使用全選刪除，刪除後該 key 的已被勾選 className 不會被移除，所以新增出有重複的 key 的 row 會被自動帶上被選 select style
+    // const keyNum = dataSource[dataSource.length-1]?.key + 1 || 0;
+    const keyNum = Math.floor(Math.random() * 100000)
     const newItem = {
       key: keyNum,
       projectLabel: "",
@@ -720,12 +723,12 @@ const TimeSheetTable = () => {
   };
 
   const deleteItems = () => {
-    const newItem = dataSource.filter((item) => {
-      for (let select in selectDataKey) {
-        return item.key !== select.key;
-      }
+    const selectItemKey = selectDataKey?.map((item) => item.key);
+    const newItem = dataSource?.filter((item) => {
+      return !selectItemKey?.includes(item.key);
     });
-    console.log(newItem)
+    setDataSource(newItem);
+    setSelectDataKey([]);
   };
 
   return (
@@ -745,9 +748,17 @@ const TimeSheetTable = () => {
           dataSource={dataSource}
           pagination={false}
           rowSelection={{
+            selectedRowKeys:selectDataKey.key,
             onSelect: (record) => {
               selectItem(record);
             },
+            onSelectAll: (_record, rowdata) => {
+              const newSelect = rowdata.filter((item) => item !== undefined)
+              setSelectDataKey(newSelect)
+            },
+            onSelectNone:() => {
+              setSelectDataKey([])
+            }
           }}
           summary={(pageData) => {
             return <TableSummary pageData={pageData} />;
