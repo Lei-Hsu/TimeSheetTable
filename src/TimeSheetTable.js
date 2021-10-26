@@ -419,7 +419,6 @@ const TimeSheetTable = () => {
           <Input
             style={{ width: "50px", textAlign: "center" }}
             value={record}
-            disabled
             onChange={(e) => {
               const updateItem = {
                 ...rowData,
