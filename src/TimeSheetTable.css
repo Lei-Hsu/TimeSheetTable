@@ -26,3 +26,8 @@
   border-bottom: none;
   text-align: center;
 }
+
+.table_button{
+  display: flex;
+  justify-content: space-between;
+}
